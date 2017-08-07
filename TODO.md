@@ -1,0 +1,3 @@
+- fully finish schema
+- create subscriptions for specific changes
+- create cli tool? alert system? app?
