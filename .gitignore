@@ -1,0 +1,12 @@
+coverage
+docs
+*.idea
+node_modules
+.tmp
+*.iml
+schema.graphql
+schema.json
+npm-debug.log
+*.DS_Store
+.vscode
+yarn.lock
