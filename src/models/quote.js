@@ -1,9 +1,17 @@
-async function get(symbol, connector) {
+async function getMultiple(symbols, connector) {
+  const path = `quotes/?symbols=${symbols.join(',')}`;
+  const { results = [] } = await connector.get(path);
+
+  return results;
+}
+
+function getOne(symbol, connector) {
   const path = `quotes/${symbol}/`;
-  const response = await connector.get(path);
-  return response;
+
+  return connector.get(path);
 }
 
 module.exports = {
-  get
+  getMultiple,
+  getOne
 };

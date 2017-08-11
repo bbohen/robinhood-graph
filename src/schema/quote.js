@@ -21,12 +21,19 @@ const query = `
   quote(
     symbol: String
   ): Quote
+
+  quotes(
+    symbols: [String]
+  ): [Quote]
 `;
 
 const resolvers = {
   Query: {
     quote(_obj, { symbol }, { connector }) {
-      return quoteModel.get(symbol, connector);
+      return quoteModel.getOne(symbol, connector);
+    },
+    quotes(_obj, { symbols }, { connector }) {
+      return quoteModel.getMultiple(symbols, connector);
     }
   }
 };
