@@ -1,3 +1,3 @@
-- fully finish schema
+- fully finish schema (add "stock" schema to combine other schema together?)
 - create subscriptions for specific changes
 - create cli tool? alert system? app?
