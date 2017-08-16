@@ -1,3 +1,8 @@
+function getUser(connector) {
+  const path = 'user/';
+  return connector.get(path);
+}
+
 async function login(username, password, connector) {
   const path = 'api-token-auth/';
   const formData = {
@@ -10,5 +15,6 @@ async function login(username, password, connector) {
 }
 
 module.exports = {
+  getUser,
   login
 };

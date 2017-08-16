@@ -4,6 +4,7 @@ const fundamental = require('./fundamental');
 const account = require('./account');
 const market = require('./market');
 const quote = require('./quote');
+const urlScalar = require('./scalars/url');
 
 const rootSchema = `
   type Query {
@@ -35,7 +36,8 @@ const resolvers = deepmerge.all([
   account.resolvers,
   fundamental.resolvers,
   market.resolvers,
-  quote.resolvers
+  quote.resolvers,
+  urlScalar.resolvers
 ]);
 
 const typeDefs = [
@@ -43,7 +45,8 @@ const typeDefs = [
   account.typeDefs,
   fundamental.typeDefs,
   market.typeDefs,
-  quote.typeDefs
+  quote.typeDefs,
+  urlScalar.typeDefs
 ];
 
 exports.resolvers = resolvers;

@@ -1,3 +1,4 @@
 - fully finish schema (add "stock" schema to combine other schema together?)
+- add unofficial docs into schema docs
 - create subscriptions for specific changes
 - create cli tool? alert system? app?

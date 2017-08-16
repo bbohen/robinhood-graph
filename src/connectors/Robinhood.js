@@ -6,16 +6,20 @@ const config = require('../../config');
 const resultCache = {};
 
 class RobinhoodConnector {
-  constructor() {
+  constructor(token) {
     this.loader = new DataLoader(RobinhoodConnector.fetch.bind(this));
     this.baseUrl = config.robinHoodBaseUrl;
+    this.token = `Token ${token}`;
   }
 
   static fetch(urls) {
     return Promise.all(urls.map(url =>
       new Promise((resolve, reject) => {
         rp(Object.assign({}, config.requestDefaults, {
-          uri: url
+          uri: url,
+          headers: {
+            Authorization: this.token
+          }
         })).then(({ body }) => {
           resultCache[url] = {
             result: body
