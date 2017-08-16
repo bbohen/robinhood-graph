@@ -1,4 +1,5 @@
 - fully finish schema (add "stock" schema to combine other schema together?)
+- anything that has a type of "Url" should probably be a type of its own with a resolver to the relevant REST endpoint instead. remove url custom scalar when this is done
 - add unofficial docs into schema docs
 - create subscriptions for specific changes
 - create cli tool? alert system? app?

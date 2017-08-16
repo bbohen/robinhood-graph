@@ -13,7 +13,6 @@ const schema = makeExecutableSchema({
 const routeHandler = graphqlKoa(ctx => ({
   schema,
   context: {
-    // connector is created on a per request basis
     connector: new RobinhoodConnector(ctx.state.authToken)
   }
 }));

@@ -7,12 +7,12 @@ const resultCache = {};
 
 class RobinhoodConnector {
   constructor(token) {
-    this.loader = new DataLoader(RobinhoodConnector.fetch.bind(this));
+    this.loader = new DataLoader(this.fetch.bind(this));
     this.baseUrl = config.robinHoodBaseUrl;
     this.token = `Token ${token}`;
   }
 
-  static fetch(urls) {
+  fetch(urls) {
     return Promise.all(urls.map(url =>
       new Promise((resolve, reject) => {
         rp(Object.assign({}, config.requestDefaults, {
