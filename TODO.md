@@ -1,5 +1,17 @@
-- fully finish schema (add "stock" schema to combine other schema together?)
-- anything that has a type of "Url" should probably be a type of its own with a resolver to the relevant REST endpoint instead. remove url custom scalar when this is done
-- add unofficial docs into schema docs
-- create subscriptions for specific changes
-- create cli tool? alert system? app?
+- [ ] fully finish schema (add "stock" schema to combine other schema together?)
+  - [ ] Account
+  - [ ] Authentication
+  - [ ] Banking
+  - [ ] Fundamentals
+  - [ ] Instrument
+  - [ ] Markets
+  - [ ] Orders
+  - [ ] Quote
+  - [ ] Referrals
+  - [ ] Settings
+  - [ ] Unsorted
+  - [ ] Watchlist
+- [ ] anything that has a type of "Url" should probably be a type of its own with a resolver to the relevant REST endpoint instead. remove url custom scalar when this is done
+- [ ] integrate unofficial docs into schema docs
+- [ ] create subscriptions for specific changes
+- [ ] desktop helper? mobile app?
