@@ -3,7 +3,7 @@ const rp = require('request-promise');
 
 const config = require('../../config');
 
-const resultCache = {}; // Not being utilized, see line 16
+const resultCache = {};
 
 class RobinhoodConnector {
   constructor() {
@@ -13,7 +13,6 @@ class RobinhoodConnector {
 
   static fetch(urls) {
     return Promise.all(urls.map(url =>
-      // Could check here for cached responses within resultCache,
       new Promise((resolve, reject) => {
         rp(Object.assign({}, config.requestDefaults, {
           uri: url
@@ -31,6 +30,14 @@ class RobinhoodConnector {
 
   get(path) {
     return this.loader.load(`${this.baseUrl + path}`);
+  }
+
+  form(path, formData) {
+    return rp(Object.assign({}, config.requestDefaults, {
+      uri: `${this.baseUrl + path}`,
+      method: 'POST',
+      formData
+    }));
   }
 }
 
