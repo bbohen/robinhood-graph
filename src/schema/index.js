@@ -4,6 +4,7 @@ const fundamental = require('./fundamental');
 const account = require('./account');
 const market = require('./market');
 const quote = require('./quote');
+const user = require('./user');
 const urlScalar = require('./scalars/url');
 
 const rootSchema = `
@@ -19,6 +20,9 @@ const rootSchema = `
 
     # Quote
     ${quote.query}
+
+    # User
+    ${user.query}
   }
 
   type Mutation {
@@ -37,6 +41,7 @@ const resolvers = deepmerge.all([
   fundamental.resolvers,
   market.resolvers,
   quote.resolvers,
+  user.resolvers,
   urlScalar.resolvers
 ]);
 
@@ -46,6 +51,7 @@ const typeDefs = [
   fundamental.typeDefs,
   market.typeDefs,
   quote.typeDefs,
+  user.typeDefs,
   urlScalar.typeDefs
 ];
 
