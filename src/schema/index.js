@@ -2,6 +2,7 @@ const deepmerge = require('deepmerge');
 
 const fundamental = require('./fundamental');
 const account = require('./account');
+const instrument = require('./instrument');
 const market = require('./market');
 const quote = require('./quote');
 const user = require('./user');
@@ -14,6 +15,9 @@ const rootSchema = `
 
     # Fundamental
     ${fundamental.query}
+
+    # Instrument
+    ${instrument.query}
 
     # Market
     ${market.query}
@@ -39,6 +43,7 @@ const rootSchema = `
 const resolvers = deepmerge.all([
   account.resolvers,
   fundamental.resolvers,
+  instrument.resolvers,
   market.resolvers,
   quote.resolvers,
   user.resolvers,
@@ -49,6 +54,7 @@ const typeDefs = [
   rootSchema,
   account.typeDefs,
   fundamental.typeDefs,
+  instrument.typeDefs,
   market.typeDefs,
   quote.typeDefs,
   user.typeDefs,

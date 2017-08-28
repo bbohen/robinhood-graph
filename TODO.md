@@ -1,6 +1,5 @@
-- [ ] add positions to account schema (https://api.robinhood.com/accounts/XXXXXXX/positions/)
-- [ ] add query for home screen stock quotes
-- [ ] anything that has a type of "Url" should probably be a type of its own with a resolver to the relevant REST endpoint instead. remove url custom scalar when this is done
-- [ ] integrate unofficial docs into schema docs
-- [ ] create subscriptions for specific changes
-- [ ] desktop helper? mobile app?
+- add query for home screen stock quotes?
+- anything that has a type of "Url" should probably be a type of its own with a resolver to the relevant REST endpoint instead. remove url custom scalar when this is done
+- integrate unofficial docs into schema docs
+- create subscriptions for specific changes
+- desktop helper? mobile app?
