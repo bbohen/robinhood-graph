@@ -28,8 +28,7 @@ class RobinhoodConnector {
         }).catch((err) => {
           reject(err);
         });
-      })
-    ));
+      })));
   }
 
   get(path) {

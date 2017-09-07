@@ -1,6 +1,6 @@
 # robinhood-graph
 
-An unofficial WIP GraphQL transformation layer for Robinhood Trade's Private REST API. This is based on [unofficial documentation](https://github.com/sanko/Robinhood) but is not intended to have all the functionality of the REST API.
+An unofficial WIP GraphQL transformation layer for Robinhood Trade's Private REST API. This is based on [unofficial documentation](https://github.com/sanko/Robinhood) but is not intended to have all the functionality of the REST API. Feel free to open PRs with additions to the graph.
 
 ## Usage
 
