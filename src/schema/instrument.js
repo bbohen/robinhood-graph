@@ -22,21 +22,22 @@ const typeDefs = `
   }
 `;
 
-const query = `instrument(
-  id: ID
-): Instrument`;
-
-const mutation = `
-  login(
-    username: String!
-    password: String!
-  ): Authentication
+const query = `
+instrument(
+  symbol: String
+): Instrument,
+instruments(
+  symbols: [String]
+): [Instrument]
 `;
 
 const resolvers = {
   Query: {
-    instrument(_obj, { id }, { connector }) {
-      return instrumentModel.getInstrumentByID(id, connector);
+    instrument(_obj, { symbol }, { connector }) {
+      return instrumentModel.getInstrumentBySymbol(symbol, connector);
+    },
+    instruments(_obj, { symbols }, { connector }) {
+      return instrumentModel.getInstrumentsBySymbols(symbols, connector);
     }
   }
 };
@@ -44,6 +45,5 @@ const resolvers = {
 module.exports = {
   typeDefs,
   query,
-  mutation,
   resolvers
 };
