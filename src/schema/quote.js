@@ -1,4 +1,7 @@
-const { quote: quoteModel } = require('../models');
+const {
+  quote: quoteModel,
+  fundamental: fundamentalModel
+} = require('../models');
 
 const typeDefs = `
   type Quote {
@@ -6,6 +9,7 @@ const typeDefs = `
     ask_size: Int
     bid_price: String
     bid_size: Int
+    description: String
     last_trade_price: String
     last_extended_hours_trade_price: String
     previous_close: String
@@ -34,6 +38,13 @@ const resolvers = {
     },
     quotes(_obj, { symbols }, { connector }) {
       return quoteModel.getMultiple(symbols, connector);
+    }
+  },
+  Quote: {
+    async description({ symbol }, _args, { connector }) {
+      const { description } = await fundamentalModel.getOne(symbol, connector);
+
+      return description;
     }
   }
 };
