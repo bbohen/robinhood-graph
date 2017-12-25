@@ -9,18 +9,27 @@ class RobinhoodConnector {
   constructor(token) {
     this.loader = new DataLoader(this.fetch.bind(this));
     this.baseUrl = config.robinHoodBaseUrl;
-    this.token = `Token ${token}`;
+    this.token = token && `Token ${token}`;
   }
 
   fetch(urls) {
-    return Promise.all(urls.map(url =>
-      new Promise((resolve, reject) => {
-        rp(Object.assign({}, config.requestDefaults, {
-          uri: url,
-          headers: {
-            Authorization: this.token
-          }
-        })).then(({ body }) => {
+    return Promise.all(urls.map((url) => {
+      const requestOptions = {
+        uri: url
+      };
+
+      if (this.token) {
+        requestOptions.headers = {
+          Authorization: this.token
+        };
+      }
+
+      return new Promise((resolve, reject) => {
+        rp(Object.assign(
+          {},
+          config.requestDefaults,
+          requestOptions
+        )).then(({ body }) => {
           resultCache[url] = {
             result: body
           };
@@ -28,7 +37,8 @@ class RobinhoodConnector {
         }).catch((err) => {
           reject(err);
         });
-      })));
+      });
+    }));
   }
 
   get(path) {
