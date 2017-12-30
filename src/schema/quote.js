@@ -16,6 +16,7 @@ const typeDefs = `
     last_trade_price: String
     last_extended_hours_trade_price: String
     simple_name: String
+    trade_price_delta: Float
     previous_close: String
     adjusted_previous_close: String
     previous_close_date: String
@@ -67,6 +68,9 @@ const resolvers = {
       );
 
       return simpleName;
+    },
+    trade_price_delta({ adjusted_previous_close, last_trade_price }) {
+      return (parseFloat(last_trade_price) - parseFloat(adjusted_previous_close)).toFixed(2);
     }
   }
 };
