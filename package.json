@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "ENV=dev nodemon --inspect ./src/index.js --ignore package.json",
-    "lint": "eslint src --ext .js --fix"
+    "lint": "eslint src --ext .js --fix",
+    "start": "node ./src/index.js"
   },
   "dependencies": {
     "@koa/cors": "^2.2.1",

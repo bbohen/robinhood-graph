@@ -17,6 +17,7 @@ const typeDefs = `
     last_extended_hours_trade_price: String
     simple_name: String
     trade_price_delta: Float
+    trade_price_delta_percentage: String
     previous_close: String
     adjusted_previous_close: String
     previous_close_date: String
@@ -69,8 +70,21 @@ const resolvers = {
 
       return simpleName;
     },
-    trade_price_delta({ adjusted_previous_close, last_trade_price }) {
-      return (parseFloat(last_trade_price) - parseFloat(adjusted_previous_close)).toFixed(2);
+    trade_price_delta({
+      adjusted_previous_close: adjustedPreviousClose,
+      last_trade_price: lastTradePrice
+    }) {
+      return (parseFloat(lastTradePrice) - parseFloat(adjustedPreviousClose)).toFixed(2);
+    },
+    trade_price_delta_percentage({
+      adjusted_previous_close: adjustedPreviousClose,
+      last_trade_price: lastTradePrice
+    }) {
+      const tradePriceDelta = (parseFloat(lastTradePrice) -
+        parseFloat(adjustedPreviousClose)).toFixed(2);
+      const unformattedPercentage = ((tradePriceDelta / adjustedPreviousClose) * 100);
+
+      return `${unformattedPercentage.toFixed(2)}%`;
     }
   }
 };
