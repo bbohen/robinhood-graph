@@ -3,6 +3,7 @@ const {
   fundamental: fundamentalModel,
   instrument: instrumentModel
 } = require('../models');
+const differenceInHours = require('date-fns/difference_in_hours');
 
 const typeDefs = `
   type Quote {
@@ -12,6 +13,7 @@ const typeDefs = `
     bid_size: Int
     description: String
     high_52_weeks: Float
+    hours_since_update: String
     low_52_weeks: Float
     last_trade_price: String
     last_extended_hours_trade_price: String
@@ -69,6 +71,10 @@ const resolvers = {
       );
 
       return simpleName;
+    },
+    hours_since_update({ updated_at }) {
+      const difference = `${differenceInHours(updated_at, new Date())}`;
+      return difference && difference.replace('-', '');
     },
     trade_price_delta({
       adjusted_previous_close: adjustedPreviousClose,
