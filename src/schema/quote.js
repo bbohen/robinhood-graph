@@ -37,6 +37,10 @@ const query = `
   quotes(
     symbols: [String]
   ): [Quote]
+
+  quoteSearch(
+    term: String
+  ): Quote
 `;
 
 const resolvers = {
@@ -46,6 +50,27 @@ const resolvers = {
     },
     quotes(_obj, { symbols }, { connector }) {
       return quoteModel.getMultiple(symbols, connector);
+    },
+    async quoteSearch(_obj, { term }, { connector }) {
+      let quote;
+
+      try {
+        // Check for a matching symbol first
+        quote = await quoteModel.getOne(term, connector);
+      } catch (error) {
+        // No matching symbol found, die quietly so we can search by query
+      }
+
+      if (quote) {
+        return quote;
+      }
+
+      const { symbol: symbolResult } = await instrumentModel.getInstrumentByQuery(
+        term,
+        connector
+      );
+
+      return quoteModel.getOne(symbolResult, connector);
     }
   },
   Quote: {

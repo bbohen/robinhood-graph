@@ -4,6 +4,13 @@ function getInstrumentByID(id, connector) {
   return connector.get(path);
 }
 
+async function getInstrumentByQuery(query, connector) {
+  const path = `instruments/?query=${query}`;
+  const { results = [] } = await connector.get(path);
+
+  return results[0];
+}
+
 async function getInstrumentBySymbol(symbol, connector) {
   const path = `instruments/?symbol=${symbol}`;
   const { results = [] } = await connector.get(path);
@@ -24,6 +31,7 @@ async function getInstrumentsBySymbols(symbols, connector) {
 
 module.exports = {
   getInstrumentByID,
+  getInstrumentByQuery,
   getInstrumentBySymbol,
   getInstrumentsBySymbols
 };
