@@ -4,7 +4,7 @@ const typeDefs = `
   type Historical {
     begins_at: String,
     open_price: String,
-    close_price: String,
+    close_price: Float,
     high_price: String,
     low_price: String,
     volume: Float,
@@ -15,14 +15,22 @@ const typeDefs = `
 
 const query = `
 history(
+  bounds: String,
+  interval: String,
+  span: String,
   symbol: String
 ): [Historical],
 `;
 
 const resolvers = {
   Query: {
-    history(_obj, { symbol }, { connector }) {
-      return historicalModel.getHistoryBySymbol(symbol, connector);
+    history(_obj, {
+      bounds,
+      interval,
+      span,
+      symbol
+    }, { connector }) {
+      return historicalModel.getHistoryBySymbol(symbol, connector, interval, span, bounds);
     }
   }
 };
