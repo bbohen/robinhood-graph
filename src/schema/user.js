@@ -32,7 +32,6 @@ const typeDefs = `
   type EmploymentData {
     employer_address: String
     employer_city: String
-    employer_city: String
     employer_state: String
     employer_zipcode: String
     employer_status: String
