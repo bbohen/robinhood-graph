@@ -1,4 +1,4 @@
-const { gql } = require('apollo-server');
+const { gql } = require('apollo-server-express');
 
 const { user: userModel } = require('../models');
 
@@ -62,12 +62,12 @@ const query = `
   user: User
 `;
 
-const mutation = `
-  login(
-    username: String!
-    password: String!
-  ): Account
-`;
+// const mutation = `
+//   login(
+//     username: String!
+//     password: String!
+//   ): Account
+// `;
 
 const resolvers = {
   Query: {
@@ -75,11 +75,11 @@ const resolvers = {
       return userModel.getUser(connector);
     }
   },
-  Mutation: {
-    login(_obj, { username, password }, { connector }) {
-      return userModel.login(username, password, connector);
-    }
-  },
+  // Mutation: {
+  //   login(_obj, { username, password }, { connector }) {
+  //     return userModel.login(username, password, connector);
+  //   }
+  // },
   User: {
     additional_info(_obj, _args, { connector }) {
       return userModel.additionalInfo(connector);
@@ -96,6 +96,6 @@ const resolvers = {
 module.exports = {
   typeDefs,
   query,
-  mutation,
+  // mutation,
   resolvers
 };

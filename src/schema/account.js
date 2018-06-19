@@ -1,4 +1,4 @@
-const { gql } = require('apollo-server');
+const { gql } = require('apollo-server-express');
 
 const { account: accountModel, instrument: instrumentModel } = require('../models');
 
