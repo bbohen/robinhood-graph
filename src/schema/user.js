@@ -62,24 +62,12 @@ const query = `
   user: User
 `;
 
-// const mutation = `
-//   login(
-//     username: String!
-//     password: String!
-//   ): Account
-// `;
-
 const resolvers = {
   Query: {
     user(_obj, _args, { connector }) {
       return userModel.getUser(connector);
     }
   },
-  // Mutation: {
-  //   login(_obj, { username, password }, { connector }) {
-  //     return userModel.login(username, password, connector);
-  //   }
-  // },
   User: {
     additional_info(_obj, _args, { connector }) {
       return userModel.additionalInfo(connector);
@@ -96,6 +84,5 @@ const resolvers = {
 module.exports = {
   typeDefs,
   query,
-  // mutation,
   resolvers
 };
