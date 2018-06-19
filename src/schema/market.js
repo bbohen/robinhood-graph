@@ -1,6 +1,8 @@
+const { gql } = require('apollo-server-express');
+
 const { market: marketModel } = require('../models');
 
-const typeDefs = `
+const typeDefs = gql`
   type Market {
     website: String
     city: String

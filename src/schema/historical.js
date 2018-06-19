@@ -1,6 +1,8 @@
+const { gql } = require('apollo-server-express');
+
 const { historical: historicalModel } = require('../models');
 
-const typeDefs = `
+const typeDefs = gql`
   type Historical {
     begins_at: String,
     open_price: String,

@@ -1,6 +1,8 @@
+const { gql } = require('apollo-server-express');
+
 const { account: accountModel, instrument: instrumentModel } = require('../models');
 
-const typeDefs = `
+const typeDefs = gql`
   type Authentication {
     token: ID
   }

@@ -1,4 +1,5 @@
 const deepmerge = require('deepmerge');
+const { gql } = require('apollo-server-express');
 
 const account = require('./account');
 const fundamental = require('./fundamental');

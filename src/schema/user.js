@@ -1,6 +1,8 @@
+const { gql } = require('apollo-server-express');
+
 const { user: userModel } = require('../models');
 
-const typeDefs = `
+const typeDefs = gql`
   type User {
     id: ID
     username: String
@@ -60,22 +62,10 @@ const query = `
   user: User
 `;
 
-const mutation = `
-  login(
-    username: String!
-    password: String!
-  ): Account
-`;
-
 const resolvers = {
   Query: {
     user(_obj, _args, { connector }) {
       return userModel.getUser(connector);
-    }
-  },
-  Mutation: {
-    login(_obj, { username, password }, { connector }) {
-      return userModel.login(username, password, connector);
     }
   },
   User: {
@@ -94,6 +84,5 @@ const resolvers = {
 module.exports = {
   typeDefs,
   query,
-  mutation,
   resolvers
 };

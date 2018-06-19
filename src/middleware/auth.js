@@ -1,9 +1,9 @@
-function auth(ctx, next) {
-  const authHeader = (ctx.headers && ctx.headers.authorization) || '';
+function auth(req, res, next) {
+  const authHeader = (req.headers && req.headers.authorization) || '';
 
-  ctx.state.authToken = authHeader;
+  req.authToken = authHeader;
 
-  return next();
+  next();
 }
 
 module.exports = auth;
