@@ -1,6 +1,8 @@
+const { gql } = require('apollo-server');
+
 const { instrument: instrumentModel } = require('../models');
 
-const typeDefs = `
+const typeDefs = gql`
   type Instrument {
     min_tick_size: String,
     type: String,

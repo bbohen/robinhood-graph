@@ -1,3 +1,5 @@
+const { gql } = require('apollo-server');
+
 const {
   quote: quoteModel,
   fundamental: fundamentalModel,
@@ -5,7 +7,7 @@ const {
 } = require('../models');
 const differenceInHours = require('date-fns/difference_in_hours');
 
-const typeDefs = `
+const typeDefs = gql`
   type Quote {
     ask_price: String
     ask_size: Int

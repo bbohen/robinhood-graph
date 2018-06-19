@@ -1,6 +1,8 @@
+const { gql } = require('apollo-server');
+
 const { user: userModel } = require('../models');
 
-const typeDefs = `
+const typeDefs = gql`
   type User {
     id: ID
     username: String

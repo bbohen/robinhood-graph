@@ -1,6 +1,8 @@
+const { gql } = require('apollo-server');
+
 const { fundamental: fundamentalModel } = require('../models');
 
-const typeDefs = `
+const typeDefs = gql`
   type Fundamental {
     open: Float
     high: Float

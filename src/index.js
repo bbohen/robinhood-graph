@@ -1,20 +1,14 @@
-const Koa = require('koa');
-const koaBody = require('koa-bodyparser');
-const cors = require('@koa/cors');
-const mount = require('koa-mount');
-const serve = require('koa-static');
-const path = require('path');
+const { ApolloServer } = require('apollo-server');
 
-const auth = require('./middleware/auth');
-const router = require('./router');
+const { resolvers, typeDefs } = require('./schema');
+const RobinhoodConnector = require('./connectors/Robinhood');
 
-const app = new Koa();
+// TODO: Bring back auth middleware that will pass the token to the Robinhood connector
+const context = {
+  connector: new RobinhoodConnector()
+};
+const server = new ApolloServer({ typeDefs, resolvers, context });
 
-app.use(cors());
-app.use(koaBody());
-app.use(mount('/graphiql', serve(path.resolve(__dirname, '..', 'graphiql'))));
-app.use(auth);
-app.use(router.routes());
-app.use(router.allowedMethods());
-
-app.listen(8080, () => console.log("listening on 8080")); // eslint-disable-line
+server.listen().then(({ url }) => {
+  console.log(`🚀 Server ready at ${url}`);
+});
